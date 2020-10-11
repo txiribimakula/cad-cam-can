@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   finishLimit: number = 0;
   index: number = 0;
   animation: any;
+  speedMultiplier: number = 1;
 
   list = [
     {
@@ -30,11 +31,11 @@ export class AppComponent implements OnInit {
   playSimulation() {
     this.animation = setInterval(() => {
       if(!this.isCurrentLimitReached()) {
-        this.list[this.index].progress -= this.increment;
+        this.list[this.index].progress -= this.getIncrement();
       } else {
         this.setNextElement();
       }
-    }, 50);
+    }, 1);
   }
 
   pauseSimulation() {
@@ -65,6 +66,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  fasterSimulation() {
+    this.speedMultiplier *= 1.1;
+  }
+
+  slowerSimulation() {
+    this.speedMultiplier /= 1.1;
+  }
+
   setNextElement() {
     if(this.isLastElementReached()) {
       this.index++;
@@ -83,13 +92,17 @@ export class AppComponent implements OnInit {
 
   isCurrentLimitReached() {
     if(this.isGrowing()) {
-      return this.list[this.index].progress == this.list[this.index].length;
+      return this.list[this.index].progress >= this.list[this.index].length;
     } else {
-      return this.list[this.index].progress == 0;
+      return this.list[this.index].progress <= 0;
     }
   }
 
   isGrowing() {
     return this.increment < 0;
+  }
+
+  getIncrement() {
+    return this.increment * this.speedMultiplier;
   }
 }
