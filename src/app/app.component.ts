@@ -32,8 +32,13 @@ export class AppComponent implements OnInit {
     this.progress = 100;
   }
 
-  rewindSimulation() {
-    this.finishLimit = 100;
-    this.increment = -1;
+  reverseSimulation() {
+    if(this.finishLimit == 100) {
+      this.finishLimit = 0;
+      this.increment = 1;
+    } else {
+      this.finishLimit = 100;
+      this.increment = -1;
+    }
   }
 }
