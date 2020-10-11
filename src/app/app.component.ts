@@ -45,7 +45,15 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.list[this.index].progress = this.list[this.index].length;
+    this.list.forEach(element => {
+      if(this.isGrowing()) {
+        element.progress = 0;
+        this.index = this.list.length - 1;
+      } else {
+        element.progress = element.length;
+        this.index = 0;
+      }
+    });
   }
 
   reverseSimulation() {
