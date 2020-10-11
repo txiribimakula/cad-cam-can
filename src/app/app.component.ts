@@ -8,7 +8,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   increment: number = 1;
   finishLimit: number = 0;
-  currentElement: any;
+  index: number = 0;
   animation: any;
 
   list = [
@@ -16,17 +16,24 @@ export class AppComponent implements OnInit {
       data: "M 100 200 L 200 200",
       progress: 100,
       length: 100
+    },
+    {
+      data: "M 100 100 L 200 100",
+      progress: 100,
+      length: 100
     }
   ];
 
   ngOnInit(): void {
-    this.currentElement = this.list[0];
+    this.list[this.index] = this.list[0];
   }
 
   playSimulation() {
     this.animation = setInterval(() => {
-      if(this.currentElement.progress != this.finishLimit) {
-        this.currentElement.progress -= this.increment;
+      if(this.list[this.index].progress != this.finishLimit) {
+        this.list[this.index].progress -= this.increment;
+      } else {
+        this.index++;
       }
     }, 50);
   }
@@ -38,15 +45,15 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.currentElement.progress = this.currentElement.length;
+    this.list[this.index].progress = this.list[this.index].length;
   }
 
   reverseSimulation() {
-    if(this.finishLimit == this.currentElement.length) {
+    if(this.finishLimit == this.list[this.index].length) {
       this.finishLimit = 0;
       this.increment = 1;
     } else {
-      this.finishLimit = this.currentElement.length;
+      this.finishLimit = this.list[this.index].length;
       this.increment = -1;
     }
   }
