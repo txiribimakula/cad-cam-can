@@ -76,7 +76,11 @@ export class AppComponent implements OnInit {
 
   setNextElement() {
     if(this.isLastElementReached()) {
-      this.index++;
+      if(this.isGrowing()) {
+        this.index--;
+      } else {
+        this.index++;
+      }
     } else {
       this.pauseSimulation();
     }
