@@ -17,6 +17,10 @@ export class AppComponent implements OnInit {
     {
       data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
       color: "yellow"
+    },
+    {
+      data: "M 500 400 L 550 400 550 450 500 450 500 400",
+      color: "yellow"
     }
   ];
 
@@ -33,6 +37,22 @@ export class AppComponent implements OnInit {
       data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
       progress: 800,
       length: 800,
+      color: "red",
+      thickness: 3,
+      speed: 1
+    },
+    {
+      data: "M 50 200 L 500 400",
+      progress: 492.44289,
+      length: 492.44289,
+      color: "green",
+      thickness: 2,
+      speed: 5
+    },
+    {
+      data: "M 500 400 L 550 400 550 450 500 450 500 400",
+      progress: 200,
+      length: 200,
       color: "red",
       thickness: 3,
       speed: 1
