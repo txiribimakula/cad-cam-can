@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.list[this.index] = this.list[0];
   }
 
   playSimulation() {
