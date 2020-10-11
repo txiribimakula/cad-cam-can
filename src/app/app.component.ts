@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   animation: any;
   speedMultiplier: number = 1;
 
-  list = [
+  machiningList = [
     {
       data: "M 10 200 L 110 200",
       progress: 100,
@@ -56,15 +56,15 @@ export class AppComponent implements OnInit {
 
   applyIncrement(increment: number) {
     if(!this.isCurrentLimitReached(increment)) {
-      this.list[this.index].progress -= increment;
+      this.machiningList[this.index].progress -= increment;
     } else {
       var partialIncrement: number;
       if(this.isGrowing()) {
-        partialIncrement = this.list[this.index].progress;
-        this.list[this.index].progress = 0;
+        partialIncrement = this.machiningList[this.index].progress;
+        this.machiningList[this.index].progress = 0;
       } else {
-        partialIncrement = this.list[this.index].length - this.list[this.index].progress;
-        this.list[this.index].progress = this.list[this.index].length;
+        partialIncrement = this.machiningList[this.index].length - this.machiningList[this.index].progress;
+        this.machiningList[this.index].progress = this.machiningList[this.index].length;
       }
       this.setNextElement();
       if(partialIncrement != 0) {
@@ -80,20 +80,20 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.list.forEach(element => {
+    this.machiningList.forEach(element => {
       if(this.isGrowing()) {
         element.progress = element.length;
         this.index = 0;
       } else {
         element.progress = 0;
-        this.index = this.list.length - 1;
+        this.index = this.machiningList.length - 1;
       }
     });
   }
 
   reverseSimulation() {
     if(this.isGrowing()) {
-      this.finishLimit = this.list[this.index].length;
+      this.finishLimit = this.machiningList[this.index].length;
       this.increment = -1;
     } else {
       this.finishLimit = 0;
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit {
 
   isLastElementReached() {
     if(this.isGrowing()) {
-      return this.index >= this.list.length - 1;
+      return this.index >= this.machiningList.length - 1;
     } else {
       return this.index <= 0;
     }
@@ -131,9 +131,9 @@ export class AppComponent implements OnInit {
 
   isCurrentLimitReached(increment: number) {
     if(this.isGrowing()) {
-      return (this.list[this.index].progress - increment) < 0;
+      return (this.machiningList[this.index].progress - increment) < 0;
     } else {
-      return (this.list[this.index].progress - increment) > this.list[this.index].length;
+      return (this.machiningList[this.index].progress - increment) > this.machiningList[this.index].length;
     }
   }
 
