@@ -4,5 +4,7 @@
 <button (click)="reverseSimulation()">Reverse</button>
 
 <svg height="400" width="450">
-  <path [attr.stroke-dashoffset]="progress" stroke-dasharray="100" d="M 100 200 L 200 200" stroke="blue" stroke-width="5" fill="none" />
+  <g class="machining" *ngFor="let item of list">
+    <path [attr.stroke-dashoffset]="item.progress" stroke-dasharray="100" [attr.d]="item.data" stroke="blue" stroke-width="5" fill="none" />
+  </g>
 </svg>

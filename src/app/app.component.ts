@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   increment: number = 1;
-  progress: number = 100;
   finishLimit: number = 0;
   animation: any;
 
+  list = [
+    {
+      data: "M 100 200 L 200 200",
+      progress: 100
+    }
+  ];
+
   ngOnInit(): void {
+    
   }
 
   playSimulation() {
     this.animation = setInterval(() => {
-      if(this.progress != this.finishLimit) {
-        this.progress -= this.increment;
+      if(this.list[0].progress != this.finishLimit) {
+        this.list[0].progress -= this.increment;
       }
     }, 50);
   }
@@ -29,7 +36,7 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.progress = 100;
+    this.list[0].progress = 100;
   }
 
   reverseSimulation() {
