@@ -6,6 +6,7 @@
 <button (click)="slowerSimulation()">Slower</button>
 
 <svg height="400" width="450">
+  <g class="sheet" [innerHTML]="svgTest | safeHtml"/>
   <g class="machining" *ngFor="let item of machiningList">
     <path [attr.stroke-dashoffset]="item.progress" [attr.stroke-dasharray]="item.length" [attr.d]="item.data" stroke="red" stroke-width="3" opacity="0.7" fill="none" stroke-linecap="round"/>
   </g>

@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   animation: any;
   speedMultiplier: number = 1;
 
+  svgTest = "<path d=\"M 10 200 L 110 200 110 250 210 250 210 50 10 50 10 200\" stroke-width=\"2\" stroke=\"black\" fill=\"none\"/>"
+
   machiningList = [
     {
       data: "M 10 200 L 110 200",
