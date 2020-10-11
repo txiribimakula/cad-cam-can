@@ -49,12 +49,16 @@ export class AppComponent implements OnInit {
   }
 
   reverseSimulation() {
-    if(this.finishLimit == this.list[this.index].length) {
+    if(this.isGrowing()) {
       this.finishLimit = 0;
       this.increment = 1;
     } else {
       this.finishLimit = this.list[this.index].length;
       this.increment = -1;
     }
+  }
+
+  isGrowing() {
+    return this.increment < 0;
   }
 }
