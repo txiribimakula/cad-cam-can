@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   machinings = [
     {
-      data: "M 10 500 L 50 200",
-      progress: 302.654919,
-      length: 302.654919,
+      data: "M 10 510 L 50 200",
+      progress: 312.569992,
+      length: 312.569992,
       color: "green",
       thickness: 2,
       speed: 5
