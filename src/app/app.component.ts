@@ -30,17 +30,27 @@ export class AppComponent implements OnInit {
 
   playSimulation() {
     this.animation = setInterval(() => {
-      if(!this.isCurrentLimitReached()) {
-        this.list[this.index].progress -= this.getIncrement();
-      } else {
-        if(this.isGrowing()) {
-          this.list[this.index].progress = 0;
-        } else {
-          this.list[this.index].progress = this.list[this.index].length;
-        }
-        this.setNextElement();
-      }
+      this.applyIncrement(this.getIncrement());
     }, 1);
+  }
+
+  applyIncrement(increment: number) {
+    if(!this.isCurrentLimitReached(increment)) {
+      this.list[this.index].progress -= increment;
+    } else {
+      var partialIncrement: number;
+      if(this.isGrowing()) {
+        partialIncrement = this.list[this.index].progress;
+        this.list[this.index].progress = 0;
+      } else {
+        partialIncrement = this.list[this.index].length - this.list[this.index].progress;
+        this.list[this.index].progress = this.list[this.index].length;
+      }
+      this.setNextElement();
+      if(partialIncrement != 0) {
+        this.applyIncrement(partialIncrement);
+      }
+    }
   }
 
   pauseSimulation() {
@@ -99,11 +109,11 @@ export class AppComponent implements OnInit {
     }
   }
 
-  isCurrentLimitReached() {
+  isCurrentLimitReached(increment: number) {
     if(this.isGrowing()) {
-      return this.list[this.index].progress <= 0;
+      return (this.list[this.index].progress - increment) < 0;
     } else {
-      return this.list[this.index].progress >= this.list[this.index].length;
+      return (this.list[this.index].progress - increment) > this.list[this.index].length;
     }
   }
 
