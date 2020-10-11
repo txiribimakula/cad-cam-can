@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   progress: number = 100;
-  animateGears: any; // event handler
-
+  animateGears: any;
 
   ngOnInit(): void {
     this.runSimulation();
