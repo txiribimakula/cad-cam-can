@@ -38,15 +38,15 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.currentElement.progress = 100;
+    this.currentElement.progress = this.currentElement.length;
   }
 
   reverseSimulation() {
-    if(this.finishLimit == 100) {
+    if(this.finishLimit == this.currentElement.length) {
       this.finishLimit = 0;
       this.increment = 1;
     } else {
-      this.finishLimit = 100;
+      this.finishLimit = this.currentElement.length;
       this.increment = -1;
     }
   }
