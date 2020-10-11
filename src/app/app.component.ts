@@ -23,4 +23,9 @@ export class AppComponent implements OnInit {
   pauseSimulation() {
     clearInterval(this.animateGears);
   }
+
+  stopSimulation() {
+    this.pauseSimulation();
+    this.progress = 100;
+  }
 }
