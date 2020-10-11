@@ -13,12 +13,12 @@ export class AppComponent implements OnInit {
 
   list = [
     {
-      data: "M 100 200 L 200 200",
+      data: "M 10 200 L 110 200",
       progress: 100,
       length: 100
     },
     {
-      data: "M 100 100 L 200 100",
+      data: "M 110 200 L 210 200",
       progress: 100,
       length: 100
     }
