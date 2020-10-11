@@ -10,7 +10,6 @@ export class AppComponent implements OnInit {
   animateGears: any;
 
   ngOnInit(): void {
-    this.runSimulation();
   }
 
   runSimulation() {
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit {
     }, 50);
   }
 
-  stopSimulation() {
+  pauseSimulation() {
     clearInterval(this.animateGears);
   }
 }
