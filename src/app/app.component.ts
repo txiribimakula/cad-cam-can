@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  runSimulation() {
+  playSimulation() {
     this.animation = setInterval(() => {
       if(this.progress != this.finishLimit) {
         this.progress -= this.increment;
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
   pauseSimulation() {
     clearInterval(this.animation);
+    this.animation = null;
   }
 
   stopSimulation() {
