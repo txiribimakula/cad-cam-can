@@ -19,9 +19,29 @@ export class AppComponent implements OnInit {
       length: 100
     },
     {
-      data: "M 110 200 L 210 200",
+      data: "M 110 200 L 110 250",
+      progress: 50,
+      length: 50
+    },
+    {
+      data: "M 110 250 L 210 250",
       progress: 100,
       length: 100
+    },
+    {
+      data: "M 210 250 L 210 50",
+      progress: 200,
+      length: 200
+    },
+    {
+      data: "M 210 50 L 10 50",
+      progress: 200,
+      length: 200
+    },
+    {
+      data: "M 10 50 L 10 200",
+      progress: 150,
+      length: 150
     }
   ];
 
@@ -90,7 +110,7 @@ export class AppComponent implements OnInit {
   }
 
   setNextElement() {
-    if(this.isLastElementReached()) {
+    if(!this.isLastElementReached()) {
       if(this.isGrowing()) {
         this.index++;
       } else {
@@ -103,9 +123,9 @@ export class AppComponent implements OnInit {
 
   isLastElementReached() {
     if(this.isGrowing()) {
-      return this.index <= 0;
-    } else {
       return this.index >= this.list.length - 1;
+    } else {
+      return this.index <= 0;
     }
   }
 

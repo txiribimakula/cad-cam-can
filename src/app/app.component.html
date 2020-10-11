@@ -7,6 +7,6 @@
 
 <svg height="400" width="450">
   <g class="machining" *ngFor="let item of list">
-    <path [attr.stroke-dashoffset]="item.progress" stroke-dasharray="100" [attr.d]="item.data" stroke="blue" stroke-width="5" fill="none" />
+    <path [attr.stroke-dashoffset]="item.progress" [attr.stroke-dasharray]="item.length" [attr.d]="item.data" stroke="red" stroke-width="3" opacity="0.7" fill="none" stroke-linecap="round"/>
   </g>
 </svg>
