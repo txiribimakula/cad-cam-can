@@ -8,23 +8,25 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   increment: number = 1;
   finishLimit: number = 0;
+  currentElement: any;
   animation: any;
 
   list = [
     {
       data: "M 100 200 L 200 200",
-      progress: 100
+      progress: 100,
+      length: 100
     }
   ];
 
   ngOnInit(): void {
-    
+    this.currentElement = this.list[0];
   }
 
   playSimulation() {
     this.animation = setInterval(() => {
-      if(this.list[0].progress != this.finishLimit) {
-        this.list[0].progress -= this.increment;
+      if(this.currentElement.progress != this.finishLimit) {
+        this.currentElement.progress -= this.increment;
       }
     }, 50);
   }
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.list[0].progress = 100;
+    this.currentElement.progress = 100;
   }
 
   reverseSimulation() {
