@@ -59,10 +59,18 @@ export class AppComponent implements OnInit {
   }
 
   setNextElement() {
-    if(this.index < this.list.length - 1) {
+    if(this.isLastElementReached()) {
       this.index++;
     } else {
       this.pauseSimulation();
+    }
+  }
+
+  isLastElementReached() {
+    if(this.isGrowing()) {
+      return this.index >= this.list.length - 1;
+    } else {
+      return this.index <= 0;
     }
   }
 
