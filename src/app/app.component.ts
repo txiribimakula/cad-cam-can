@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { gsap } from "gsap";
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,5 @@ import { gsap } from "gsap";
 })
 export class AppComponent implements OnInit{
   ngOnInit(): void {
-    gsap.to("#test", {duration: 1, x: 100});
   }
 }
