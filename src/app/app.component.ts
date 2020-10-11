@@ -8,16 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   increment: number = 1;
   progress: number = 100;
-  finishLimit: number;
-  animateGears: any;
+  finishLimit: number = 0;
+  animation: any;
 
   ngOnInit(): void {
   }
 
   runSimulation() {
-    this.increment = 1;
-    this.finishLimit = 0;
-    this.animateGears = setInterval(() => {
+    this.animation = setInterval(() => {
       if(this.progress != this.finishLimit) {
         this.progress -= this.increment;
       }
@@ -25,7 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   pauseSimulation() {
-    clearInterval(this.animateGears);
+    clearInterval(this.animation);
   }
 
   stopSimulation() {
