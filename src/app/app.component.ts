@@ -33,6 +33,11 @@ export class AppComponent implements OnInit {
       if(!this.isCurrentLimitReached()) {
         this.list[this.index].progress -= this.getIncrement();
       } else {
+        if(this.isGrowing()) {
+          this.list[this.index].progress = 0;
+        } else {
+          this.list[this.index].progress = this.list[this.index].length;
+        }
         this.setNextElement();
       }
     }, 1);
