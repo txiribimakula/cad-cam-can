@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 
   playSimulation() {
     this.animation = setInterval(() => {
-      if(this.list[this.index].progress != this.finishLimit) {
+      if(!this.isCurrentLimitReached()) {
         this.list[this.index].progress -= this.increment;
       } else {
         this.index++;
@@ -55,6 +55,14 @@ export class AppComponent implements OnInit {
     } else {
       this.finishLimit = this.list[this.index].length;
       this.increment = -1;
+    }
+  }
+
+  isCurrentLimitReached() {
+    if(this.isGrowing()) {
+      return this.list[this.index].progress == this.list[this.index].length;
+    } else {
+      return this.list[this.index].progress == 0;
     }
   }
 
