@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   index: number = 0;
   animation: any;
   speedMultiplier: number = 1;
+  speedTypeMultiplier: number;
 
   svgTest = "<path d=\"M 10 200 L 110 200 110 250 210 250 210 50 10 50 10 200\" stroke-width=\"2\" stroke=\"black\" fill=\"none\"/>"
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
       length: 100.124922,
       color: "green",
       thickness: 2,
-      speed: 10
+      speed: 3
     },
     {
       data: "M 10 200 L 110 200 110 250 210 250 210 50 10 50 10 200",
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   playSimulation() {
+    this.speedTypeMultiplier = this.machiningList[0].speed;
     this.animation = setInterval(() => {
       this.applyIncrement(this.getIncrement());
     }, 1);
@@ -104,6 +106,7 @@ export class AppComponent implements OnInit {
       } else {
         this.index--;
       }
+      this.speedTypeMultiplier = this.machiningList[this.index].speed;
     } else {
       this.pauseSimulation();
     }
@@ -130,6 +133,6 @@ export class AppComponent implements OnInit {
   }
 
   getIncrement() {
-    return this.increment * this.speedMultiplier;
+    return this.increment * this.speedMultiplier * this.speedTypeMultiplier;
   }
 }
