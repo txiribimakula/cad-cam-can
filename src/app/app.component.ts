@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       length: 302.654919,
       color: "green",
       thickness: 2,
-      speed: 3
+      speed: 5
     },
     {
       data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
