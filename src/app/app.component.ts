@@ -13,19 +13,24 @@ export class AppComponent implements OnInit {
   speedMultiplier: number = 1;
   speedTypeMultiplier: number;
 
-  svgTest = "<path d=\"M 10 200 L 110 200 110 250 210 250 210 50 10 50 10 200\" stroke-width=\"2\" stroke=\"black\" fill=\"none\"/>"
-
-  machiningList = [
+  parts = [
     {
-      data: "M 5 300 L 10 200",
-      progress: 100.124922,
-      length: 100.124922,
+      data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
+      color: "yellow"
+    }
+  ];
+
+  machinings = [
+    {
+      data: "M 10 500 L 50 200",
+      progress: 302.654919,
+      length: 302.654919,
       color: "green",
       thickness: 2,
       speed: 3
     },
     {
-      data: "M 10 200 L 110 200 110 250 210 250 210 50 10 50 10 200",
+      data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
       progress: 800,
       length: 800,
       color: "red",
@@ -38,26 +43,26 @@ export class AppComponent implements OnInit {
   }
 
   playSimulation() {
-    this.speedTypeMultiplier = this.machiningList[0].speed;
+    this.speedTypeMultiplier = this.machinings[0].speed;
     this.animation = setInterval(() => {
       this.applyIncrement(this.getIncrement());
     }, 1);
   }
 
   applyIncrement(increment: number) {
-    if(!this.isCurrentLimitReached(increment)) {
-      this.machiningList[this.index].progress -= increment;
+    if (!this.isCurrentLimitReached(increment)) {
+      this.machinings[this.index].progress -= increment;
     } else {
       var partialIncrement: number;
-      if(this.isGrowing()) {
-        partialIncrement = this.machiningList[this.index].progress;
-        this.machiningList[this.index].progress = 0;
+      if (this.isGrowing()) {
+        partialIncrement = this.machinings[this.index].progress;
+        this.machinings[this.index].progress = 0;
       } else {
-        partialIncrement = this.machiningList[this.index].length - this.machiningList[this.index].progress;
-        this.machiningList[this.index].progress = this.machiningList[this.index].length;
+        partialIncrement = this.machinings[this.index].length - this.machinings[this.index].progress;
+        this.machinings[this.index].progress = this.machinings[this.index].length;
       }
       this.setNextElement();
-      if(partialIncrement != 0) {
+      if (partialIncrement != 0) {
         this.applyIncrement(partialIncrement);
       }
     }
@@ -70,20 +75,20 @@ export class AppComponent implements OnInit {
 
   stopSimulation() {
     this.pauseSimulation();
-    this.machiningList.forEach(element => {
-      if(this.isGrowing()) {
+    this.machinings.forEach(element => {
+      if (this.isGrowing()) {
         element.progress = element.length;
         this.index = 0;
       } else {
         element.progress = 0;
-        this.index = this.machiningList.length - 1;
+        this.index = this.machinings.length - 1;
       }
     });
   }
 
   reverseSimulation() {
-    if(this.isGrowing()) {
-      this.finishLimit = this.machiningList[this.index].length;
+    if (this.isGrowing()) {
+      this.finishLimit = this.machinings[this.index].length;
       this.increment = -1;
     } else {
       this.finishLimit = 0;
@@ -100,31 +105,31 @@ export class AppComponent implements OnInit {
   }
 
   setNextElement() {
-    if(!this.isLastElementReached()) {
-      if(this.isGrowing()) {
+    if (!this.isLastElementReached()) {
+      if (this.isGrowing()) {
         this.index++;
       } else {
         this.index--;
       }
-      this.speedTypeMultiplier = this.machiningList[this.index].speed;
+      this.speedTypeMultiplier = this.machinings[this.index].speed;
     } else {
       this.pauseSimulation();
     }
   }
 
   isLastElementReached() {
-    if(this.isGrowing()) {
-      return this.index >= this.machiningList.length - 1;
+    if (this.isGrowing()) {
+      return this.index >= this.machinings.length - 1;
     } else {
       return this.index <= 0;
     }
   }
 
   isCurrentLimitReached(increment: number) {
-    if(this.isGrowing()) {
-      return (this.machiningList[this.index].progress - increment) < 0;
+    if (this.isGrowing()) {
+      return (this.machinings[this.index].progress - increment) < 0;
     } else {
-      return (this.machiningList[this.index].progress - increment) > this.machiningList[this.index].length;
+      return (this.machinings[this.index].progress - increment) > this.machinings[this.index].length;
     }
   }
 
