@@ -1,13 +1,18 @@
-<button (click)="playSimulation()" [disabled]="animation">Play</button>
-<button (click)="pauseSimulation()">Pause</button>
-<button (click)="stopSimulation()">Stop</button>
-<button (click)="reverseSimulation()">Reverse</button>
-<button (click)="fasterSimulation()">Faster</button>
-<button (click)="slowerSimulation()">Slower</button>
-
-<svg height="400" width="400">
-  <g class="sheet" [innerHTML]="svgTest | safeHtml"/>
-  <g class="machining" *ngFor="let item of machiningList">
-    <path [attr.stroke-dashoffset]="item.progress" [attr.stroke-dasharray]="item.length" [attr.d]="item.data" [attr.stroke]="item.color" [attr.stroke-width]="item.thickness" opacity="0.7" fill="none" stroke-linecap="round"/>
-  </g>
-</svg>
+<div fxLayout="column" fxLayoutAlign="space-between" class="container">
+  <div fxFlex="auto">
+    <button (click)="playSimulation()" [disabled]="animation">Play</button>
+    <button (click)="pauseSimulation()">Pause</button>
+    <button (click)="stopSimulation()">Stop</button>
+    <button (click)="reverseSimulation()">Reverse</button>
+    <button (click)="fasterSimulation()">Faster</button>
+    <button (click)="slowerSimulation()">Slower</button>
+  </div>
+  <svg fxFlex="*">
+    <g class="sheet" [innerHTML]="svgTest | safeHtml" />
+    <g class="machining" *ngFor="let item of machiningList">
+      <path [attr.stroke-dashoffset]="item.progress" [attr.stroke-dasharray]="item.length" [attr.d]="item.data"
+        [attr.stroke]="item.color" [attr.stroke-width]="item.thickness" opacity="0.7" fill="none"
+        stroke-linecap="round" />
+    </g>
+  </svg>
+</div>
