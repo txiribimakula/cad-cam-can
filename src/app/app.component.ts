@@ -47,22 +47,22 @@ export class AppComponent implements OnInit {
     this.pauseSimulation();
     this.list.forEach(element => {
       if(this.isGrowing()) {
-        element.progress = 0;
-        this.index = this.list.length - 1;
-      } else {
         element.progress = element.length;
         this.index = 0;
+      } else {
+        element.progress = 0;
+        this.index = this.list.length - 1;
       }
     });
   }
 
   reverseSimulation() {
     if(this.isGrowing()) {
-      this.finishLimit = 0;
-      this.increment = 1;
-    } else {
       this.finishLimit = this.list[this.index].length;
       this.increment = -1;
+    } else {
+      this.finishLimit = 0;
+      this.increment = 1;
     }
   }
 
@@ -77,9 +77,9 @@ export class AppComponent implements OnInit {
   setNextElement() {
     if(this.isLastElementReached()) {
       if(this.isGrowing()) {
-        this.index--;
-      } else {
         this.index++;
+      } else {
+        this.index--;
       }
     } else {
       this.pauseSimulation();
@@ -88,22 +88,22 @@ export class AppComponent implements OnInit {
 
   isLastElementReached() {
     if(this.isGrowing()) {
-      return this.index >= this.list.length - 1;
-    } else {
       return this.index <= 0;
+    } else {
+      return this.index >= this.list.length - 1;
     }
   }
 
   isCurrentLimitReached() {
     if(this.isGrowing()) {
-      return this.list[this.index].progress >= this.list[this.index].length;
-    } else {
       return this.list[this.index].progress <= 0;
+    } else {
+      return this.list[this.index].progress >= this.list[this.index].length;
     }
   }
 
   isGrowing() {
-    return this.increment < 0;
+    return this.increment > 0;
   }
 
   getIncrement() {
