@@ -27,18 +27,20 @@ export class AppComponent implements OnInit {
   machinings = [
     {
       data: "M 10 510 L 50 200",
-      progress: 312.569992,
-      length: 312.569992,
+      progress: 312.57,
+      length: 312.57,
       color: "green",
-      thickness: 2,
-      speed: 5
+      thickness: 1,
+      opacity: 0.5,
+      speed: 10
     },
     {
       data: "M 50 200 L 150 200 150 250 250 250 250 50 50 50 50 200",
       progress: 800,
       length: 800,
       color: "red",
-      thickness: 3,
+      thickness: 2,
+      opacity: 0.7,
       speed: 1
     },
     {
@@ -46,15 +48,17 @@ export class AppComponent implements OnInit {
       progress: 492.44289,
       length: 492.44289,
       color: "green",
-      thickness: 2,
-      speed: 5
+      thickness: 1,
+      opacity: 0.5,
+      speed: 10
     },
     {
       data: "M 500 400 L 550 400 550 450 500 450 500 400",
       progress: 200,
       length: 200,
       color: "red",
-      thickness: 3,
+      thickness: 2,
+      opacity: 0.7,
       speed: 1
     }
   ];
@@ -66,7 +70,7 @@ export class AppComponent implements OnInit {
     this.speedTypeMultiplier = this.machinings[this.index].speed;
     this.animation = setInterval(() => {
       this.applyIncrement(this.getIncrement());
-    }, 1);
+    }, 15);
   }
 
   applyIncrement(increment: number) {
