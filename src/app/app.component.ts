@@ -75,15 +75,17 @@ export class AppComponent implements OnInit {
     } else {
       var partialIncrement: number;
       if (this.isGrowing()) {
-        partialIncrement = this.machinings[this.index].progress;
+        partialIncrement = increment - this.machinings[this.index].progress;
         this.machinings[this.index].progress = 0;
       } else {
-        partialIncrement = this.machinings[this.index].length - this.machinings[this.index].progress;
+        partialIncrement = increment + (this.machinings[this.index].length - this.machinings[this.index].progress);
         this.machinings[this.index].progress = this.machinings[this.index].length;
       }
       this.setNextElement();
       if (partialIncrement != 0) {
-        this.applyIncrement(partialIncrement);
+        if(!this.isLastElementReached()) {
+          this.applyIncrement(partialIncrement);
+        }
       }
     }
   }
