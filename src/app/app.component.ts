@@ -60,10 +60,10 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.speedTypeMultiplier = this.machinings[0].speed;
   }
 
   playSimulation() {
+    this.speedTypeMultiplier = this.machinings[this.index].speed;
     this.animation = setInterval(() => {
       this.applyIncrement(this.getIncrement());
     }, 1);
